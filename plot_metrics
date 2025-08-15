@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+# Path to metrics_summary.csv (relative to project root)
+csv_path = Path(__file__).resolve().parent / "results" / "metrics_summary.csv"
+
+# 1) Load metrics
+df = pd.read_csv(csv_path)
+
+# 2) Average by model
+avg_metrics = df.groupby("Model")[["RMSE", "MAE", "MAPE"]].mean()
+
+# 3) Plot
+ax = avg_metrics.plot(kind="bar", figsize=(8, 6))
+ax.set_title("Average Forecasting Errors Across All Stores")
+ax.set_ylabel("Error")
+ax.tick_params(axis="x", rotation=0)
+ax.grid(axis='y')
+
+# 4) Save figure
+out_file = Path(__file__).resolve().parent / "figures" / "model_avg_error_comparison.png"
+plt.tight_layout()
+plt.savefig(out_file)
+plt.show()
+
+print(f"✔ Chart saved to {out_file}")
