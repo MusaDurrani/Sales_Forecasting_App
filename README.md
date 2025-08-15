@@ -1,6 +1,6 @@
 Instructions to run the code.
 -----------------------------
-1. Open the code folder "B01779848_MuhammadMusaKhan_Code" in VS Code.
+1. Open the code folder in VS Code.
 2. Goto main.py.
 3. Run the code.
 4. Select Interpreter.
